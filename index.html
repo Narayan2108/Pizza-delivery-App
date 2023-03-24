@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pizza Delivery App</title>
+  </head>
+  <body>
+    <h1>Pizza Delivery</h1>
+    <!-- Your pizza delivery app will go here -->
+  </body>
+</html>
+<form>
+    <label for="size">Pizza Size:</label>
+    <select id="size">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+  
+    <label for="crust">Pizza Crust:</label>
+    <select id="crust">
+      <option value="thin">Thin</option>
+      <option value="thick">Thick</option>
+      <option value="stuffed">Stuffed</option>
+    </select>
+  
+    <label for="toppings">Toppings:</label>
+    <input type="checkbox" id="pepperoni" name="toppings" value="pepperoni">
+    <label for="pepperoni">Pepperoni</label>
+    <input type="checkbox" id="mushrooms" name="toppings" value="mushrooms">
+    <label for="mushrooms">Mushrooms</label>
+    <input type="checkbox" id="onions" name="toppings" value="onions">
+    <label for="onions">Onions</label>
+    <input type="checkbox" id="sausage" name="toppings" value="sausage">
+    <label for="sausage">Sausage</label>
+  
+    <button type="submit">Order</button>
+  </form>
+  <ul id="order-summary">
+    <!-- Your order summary will go here -->
+  </ul>
+  <script>
+    const form = document.querySelector('form');
+    const orderSummary = document.querySelector('#order-summary');
+  
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      const size = document.querySelector('#size').value;
+      const crust = document.querySelector('#crust').value;
+      const toppings = document.querySelectorAll('input[name="toppings"]:checked');
+      const toppingsValues = [];
+  
+      for (let i = 0; i < toppings.length; i++) {
+        toppingsValues.push(toppings[i].value);
+      }
+  
+      const li = document.createElement('li');
+      li.innerHTML = `${size} pizza with ${crust} crust and toppings: ${toppingsValues.join(', ')}`;
+      orderSummary.appendChild(li);
+    });
+  </script>
+  
